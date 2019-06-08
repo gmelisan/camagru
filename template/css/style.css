@@ -1,0 +1,212 @@
+header {
+  min-height: 70px;
+  min-width: 380px;
+  background-color: #5b58ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header .title {
+  font-size: 24px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+header .title a {
+  text-decoration: none;
+  color: white;
+}
+header .space {
+  flex-grow: 1;
+}
+header .account {
+  display: flex;
+  padding-right: 20px;
+}
+header .account a.button {
+  text-decoration: none;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  height: 40px;
+  text-align: center;
+  padding: 10px;
+  margin-left: 4px;
+  margin-right: 4px;
+  font-size: 14px;
+}
+header .account a.button:hover {
+  background-color: white;
+  color: black;
+}
+header .account a.link {
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+}
+
+@media only screen and (min-width: 992px) {
+  header > .space {
+    width: 992px;
+    flex-grow: 0;
+  }
+}
+footer {
+  padding: 10px;
+  height: 40px;
+  background-color: #464646;
+  color: white;
+  text-align: right;
+}
+
+.container-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+.container-gallery .new-button {
+  text-decoration: none;
+  background-color: #5b58ff;
+  border: 1px solid #5b58ff;
+  border-radius: 5px;
+  color: white;
+  height: 40px;
+  text-align: center;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: 100px;
+}
+.container-gallery .new-button:hover {
+  border: 1px solid #5b58ff;
+  background-color: white;
+  color: black;
+}
+.container-gallery .gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+  max-width: 992px;
+}
+.container-gallery .gallery .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.container-gallery .gallery .item img {
+  width: 250px;
+  height: 250px;
+}
+.container-gallery .gallery .item .info {
+  margin-top: 10px;
+}
+
+.pagination {
+  display: inline-block;
+}
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+.pagination a.active {
+  background-color: #5b58ff;
+  color: white;
+  border-radius: 5px;
+}
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+@media only screen and (min-width: 660px) {
+  .gallery {
+    justify-content: flex-start;
+  }
+}
+.container-registration {
+  display: flex;
+  justify-content: center;
+}
+.container-registration > .registration {
+  width: 500px;
+  padding: 10px;
+}
+.container-registration > .registration > form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.container-registration > .registration > form > .entry {
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.container-registration > .registration > form > .entry > .name {
+  width: 200px;
+}
+.container-registration > .registration > form > .entry > input {
+  width: 300px;
+  height: 38px;
+  padding: 6px 10px;
+  /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 5px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+.container-registration > .registration > form > .entry > input:focus {
+  border: 1px solid red;
+}
+.container-registration > .registration > form > input {
+  margin-top: 20px;
+  width: 150px;
+}
+
+@media only screen and (max-width: 500px) {
+  .container-registration {
+    justify-content: flex-start;
+  }
+
+  .registration form .entry {
+    flex-direction: column;
+  }
+}
+.container-add {
+  background-color: black;
+  width: 20px;
+  height: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+section.main {
+  flex-grow: 1;
+}
+
+/*# sourceMappingURL=style.css.map */

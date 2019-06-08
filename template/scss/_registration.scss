@@ -1,0 +1,59 @@
+.container-registration {
+    display: flex;
+    justify-content: center;
+
+    > .registration {
+        width: 500px;
+        padding: 10px;
+
+        @if $debug {
+            border: 1px solid red;
+        }
+
+        > form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            >.entry {
+                display: flex;
+                
+                margin-top: 5px;
+                margin-bottom: 5px;
+
+                > .name {
+                    width: 200px;
+                }
+
+                > input {
+                    width: 300px;
+                    height: 38px;
+                    padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+                    background-color: #fff;
+                    border: 1px solid #D1D1D1;
+                    border-radius: 5px;
+                    box-shadow: none;
+                    box-sizing: border-box;
+                }
+                > input:focus {
+                    border: 1px solid red;
+                }
+            }
+
+            > input {
+                margin-top: 20px;
+                width: 150px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .container-registration {
+        justify-content: flex-start;
+    }
+    .registration form .entry {
+        flex-direction: column;
+    }
+}
+

@@ -1,0 +1,92 @@
+.container-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+
+    .new-button {
+        text-decoration: none;
+        background-color: $primary-color;
+        border: 1px solid $primary-color;
+        border-radius: 5px;
+        color: white;
+        height: 40px;
+        text-align: center;
+        padding: 10px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        width: 100px;
+    }
+    
+    .new-button:hover {
+        border: 1px solid $primary-color;
+        background-color: white;
+        color: black;
+    }
+    
+    .gallery {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        height: 100%;
+        max-width: 992px;
+        @if $debug {
+            background-color: rgb(212, 212, 212);
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+            height: 300px;
+            margin-left: 15px;
+            margin-right: 15px;
+            @if $debug {
+                border: 1px solid blue;
+            }
+
+            img {
+                width: 250px;
+                height: 250px;
+                @if $debug {
+                    border: 1px solid red;
+                }
+            }
+
+            .info {
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+.pagination {
+    display: inline-block;
+
+    a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-decoration: none;
+    }
+    
+    a.active {
+        background-color: $primary-color;
+        color: white;
+        border-radius: 5px;
+    }
+    
+    a:hover:not(.active) {
+        background-color: #ddd;
+        border-radius: 5px;
+    }
+}
+  
+@media only screen and (min-width: 660px) {
+    .gallery {
+        justify-content: flex-start;
+    }
+}

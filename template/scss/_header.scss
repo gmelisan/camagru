@@ -1,0 +1,60 @@
+header {
+    min-height: 70px;
+    min-width: 380px;
+    background-color: $primary-color;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .title {
+        font-size: 24px;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    }
+
+    .space {
+        flex-grow: 1;
+    }
+
+    .account {
+        display: flex;
+        padding-right: 20px;
+
+        a.button {
+            text-decoration: none;
+            border: 1px solid white;
+            border-radius: 5px;
+            color: white;
+            height: 40px;
+            text-align: center;
+            padding: 10px;
+            margin-left: 4px;
+            margin-right: 4px;
+            font-size: 14px;
+        }
+        
+        a.button:hover {
+            background-color: white;
+            color: black;
+        }
+
+        a.link {
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+        }
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    header > .space {
+        width: 992px;
+        flex-grow: 0;
+    }
+}
