@@ -7,13 +7,16 @@ class FrontController {
 
     public function __construct($pdo) {
         $parts = parse_url($_SERVER["REQUEST_URI"]);
-        $name = end(explode('/', $parts["path"]));
-        $router = new Router($name);
+        $str = end(explode('/', $parts["path"]));
+        $router = new Router($str);
         $this->name = $router->getName();
-        
-        $modelName = $router->getModelName();
-        $viewName = $router->getViewName();
-        $controllerName = $router->getControllerName();
+        $names = $router->route();
+        if (empty($names))
+            return ;
+            
+        $modelName = $names["model"];
+        $viewName = $names["view"];
+        $controllerName = $names["controller"];
 
         $model = new $modelName($pdo);
         $this->view = new $viewName();
@@ -24,8 +27,17 @@ class FrontController {
     }
 
     public function output() {
+        if (!isset($this->model)) {
+            http_response_code(404);
+            require "Application/not_found.php";
+            return ;
+        }
         $page = $this->view->getPage($this->model);
-        require "Application/template.php";
+        if (isset($page["redirect"])) {
+            header("Location: " . $page["redirect"]);
+        } else {
+            require "Application/template.php";
+        }
     }
 
     private function action($model, $controller) {
@@ -40,7 +52,7 @@ class FrontController {
                 if (isset($_POST["submit"]))
                     return $controller->login($model);
                 if ($_GET["act"] == "logout") {
-                    header("Location: login");
+                    header("Location: /gallery");
                     return $controller->logout($model);
                 }
                 break;

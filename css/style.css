@@ -1,6 +1,18 @@
+.not-found {
+  background-color: #5b58ff;
+  font-size: 70px;
+  color: white;
+  text-align: center;
+  padding: 50px;
+}
+.not-found a {
+  font-size: 0.25em;
+  color: white;
+}
+
 header {
   min-height: 70px;
-  min-width: 380px;
+  min-width: 330px;
   background-color: #5b58ff;
   color: white;
   display: flex;
@@ -45,6 +57,12 @@ header .account a.link {
   font-size: 14px;
 }
 
+@media only screen and (max-width: 380px) {
+  header .title {
+    font-size: 20px;
+    padding: 10px;
+  }
+}
 @media only screen and (min-width: 992px) {
   header > .space {
     width: 992px;
@@ -154,9 +172,10 @@ footer {
 .container-registration > .registration > form > .entry > .name {
   width: 200px;
 }
-.container-registration > .registration > form > .entry > input {
-  width: 300px;
-  height: 38px;
+.container-registration > .registration > form > .entry input[type=text],
+.container-registration > .registration > form > .entry input[type=password] {
+  width: 250px;
+  height: 30px;
   padding: 6px 10px;
   /* The 6px vertically centers text on FF, ignored by Webkit */
   background-color: #fff;
@@ -165,10 +184,19 @@ footer {
   box-shadow: none;
   box-sizing: border-box;
 }
-.container-registration > .registration > form > .entry > input:focus {
-  border: 1px solid red;
+.container-registration > .registration > form > .entry input[type=text]:focus,
+.container-registration > .registration > form > .entry input[type=password]:focus {
+  border: 1px solid #5b58ff;
 }
-.container-registration > .registration > form > input {
+.container-registration > .registration > form .entry.end {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.container-registration > .registration > form .entry.end a {
+  margin: 10px 30px;
+}
+.container-registration > .registration > form input[type=submit] {
   margin-top: 20px;
   width: 150px;
 }

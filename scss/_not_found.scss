@@ -1,0 +1,12 @@
+.not-found {
+    background-color: $primary-color;
+    font-size: 70px;
+    color: white;
+    text-align: center;
+    padding: 50px;
+
+    a {
+        font-size: 0.25em;
+        color: white;
+    }
+}

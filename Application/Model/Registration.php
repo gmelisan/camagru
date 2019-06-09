@@ -101,7 +101,7 @@ class Registration {
         $headers = "Content-type: text/html;\r\n";
         $errors = [];
         if (!mail($to, $subject, $message, $headers))
-            $errors[] = "Ошибка при отправке email.";
+            $errors["sendMail"] = "Ошибка при отправке email.";
         return new Registration($this->pdo, $record, $errors);
     }
 
@@ -113,7 +113,7 @@ class Registration {
             $description = "Логин должен состоять минимум из " .
                             "двух символов и может содержать " .
                             "только буквы и цифры.";
-            $errors[] = $description;
+            $errors["login"] = $description;
             return $errors;
         }
 
@@ -121,7 +121,7 @@ class Registration {
         $stmt->execute([$login]);
         $res = $stmt->fetch();
         if (!empty($res) && $res["verification_code"] === "") {
-            $errors[] = "Такой логин уже существует.";
+            $errors["login"] = "Такой логин уже существует.";
         }
         return $errors;
     }
@@ -131,12 +131,12 @@ class Registration {
         $rule = "/(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,}/";
 
         if ($password !== $password2)
-            $errors[] = "Пароли не совпадают";
+            $errors["password"] = "Пароли не совпадают";
         if (preg_match($rule, $password) == 0) {
             $description = "Пароль должен быть не менее 6 знаков " .
                             "и содержать не менее одной строчной, " .
                             "заглавной буквы и цифры.";
-            $errors[] = $description;
+            $errors["password"] = $description;
         }
         return $errors;
     }
@@ -157,7 +157,7 @@ class Registration {
             if ($res["verification_code"])
                 $this->deleteByEmail($email);
             else
-                $errors[] = "Пользователь с такой почтой уже зарегистрирован.";
+                $errors["email"] = "Пользователь с такой почтой уже зарегистрирован.";
         }
         return $errors;
     }

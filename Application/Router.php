@@ -2,25 +2,30 @@
 
 class Router {
     private $name;
+    private $modelName;
+    private $viewName;
+    private $controllerName;
 
     public function __construct($name) {
+        if (empty($name))
+            $name = "gallery"; /* default path */
         $this->name = $this->convertName($name);
+    }
+
+    public function route() {
+        $names["model"] = "Camagru\\" . $this->name;
+        $names["view"] = $this->name . '\\' . "View";
+        $names["controller"] = $this->name . '\\' . "Controller";
+
+        if (!class_exists($names["model"]) || 
+            !class_exists($names["view"]) ||
+            !class_exists($names["controller"]))
+            return array();
+        return $names;
     }
 
     public function getName() {
         return $this->name;
-    }
-
-    public function getModelName() {
-        return "Camagru\\" . $this->name;
-    }
-
-    public function getViewName() {
-        return $this->name . '\\' . "View";
-    }
-
-    public function getControllerName() {
-        return $this->name . '\\' . "Controller";
     }
 
     private function convertName($name) {
