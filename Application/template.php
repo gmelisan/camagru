@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Camagru</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title><?php echo $page["title"] ?></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
 </head>
 
 <body>
@@ -19,11 +20,11 @@
             </div>
             <div class="account">
                 <?php if (isset($_SESSION["login"]) && !empty($_SESSION["login"])) { ?>
-                    <a href="#" class="button"><?php echo $_SESSION["login"] ?> </a>
-                    <a href="login?act=logout" class="link">Выход</a>
+                    <a href="/account" class="button-rev"><?php echo $_SESSION["login"] ?> </a>
+                    <a href="/login?act=logout" class="link">Выход</a>
                 <?php } else { ?>
-                    <a href="registration" class="button"> Регистрация </a>
-                    <a href="login" class="button"> Логин </a>
+                    <a href="/registration" class="button-rev"> Регистрация </a>
+                    <a href="/login" class="button-rev"> Войти </a>
                 <?php } ?>
             </div>
         </header>

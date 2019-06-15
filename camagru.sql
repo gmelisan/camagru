@@ -83,7 +83,7 @@ CREATE TABLE `users` (
   `login` varchar(128) NOT NULL,
   `password` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
-  `send_mail` tinyint(1) NOT NULL DEFAULT '1',
+  `send_email` tinyint(1) NOT NULL DEFAULT '1',
   `reg_date` datetime NOT NULL,
   `verification_code` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -1,5 +1,6 @@
 <?php
 namespace Camagru;
+require "Application/Model/Validator.php";
 
 class Registration {
     const STATUS_VALIDATE = 0;
@@ -45,7 +46,7 @@ class Registration {
     }
 
     public function confirmEmail($vercode) {
-        $query = "SELECT * from users WHERE verification_code = ?";
+        $query = "SELECT * FROM users WHERE verification_code = ?";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([$vercode]);
         $res = $stmt->fetch();
@@ -53,6 +54,9 @@ class Registration {
             $errors["confirmEmail"] = "Неверный код подтверждения.";
             return new Registration($this->pdo, [], $errors, self::STATUS_EMAILSENT);
         }
+
+        $this->deleteFakes($res);
+
         $record["login"] = $res["login"];
         $record["email"] = $res["email"];
         $query = "UPDATE users SET verification_code = '' WHERE verification_code = ?";
@@ -63,10 +67,26 @@ class Registration {
 
     private function validate($record) {
         $errors = [];
+        $validator = new Validator();
 
-        $errors = array_merge($this->validateLogin($record["login"]), 
+        if ($record["password"] !== $record["password2"])
+            $errors["password"] = "Пароли не совпадают";
+        if ($this->checkLoginExist($record["login"]))
+            $errors["login"] = "Такой логин уже существует";
+        if ($this->checkEmailExist($record["email"]))
+            $errors["email"] = "Пользователь с такой почтой уже зарегистрирован.";
+        if (!empty($errors))
+            return $errors;
+        
+        $errors["login"] = $validator->validateLogin($record["login"]);
+        $errors["password"] = $validator->validatePassword($record["password"]);
+        $errors["email"] = $validator->validateEmail($record["email"]);
+        $errors = array_filter($errors);
+        
+
+        /* $errors = array_merge($this->validateLogin($record["login"]), 
                     $this->validatePassword($record["password"], $record["password2"]),
-                    $this->validateEmail($record["email"]));
+                    $this->validateEmail($record["email"])); */
         return $errors;
     }
 
@@ -79,11 +99,16 @@ class Registration {
         $vercode = md5("camagru" . rand(10000, 99999) . $record["login"]);
 
 		$stmt = $this->pdo->prepare($query);
-        $stmt->execute(["login" => $record["login"],
+        $res = $stmt->execute(["login" => $record["login"],
                         "password" => hash("whirlpool", $record["password"]),
                         "email" => $record["email"],
                         "date" => date("Y-m-d H:i:s"),
                         "vercode" => $vercode]);
+        if (!$res) {
+            $errors[] = "Ошибка при добавлении информации в базу. " . 
+            "(code: ".$stmt->errorCode().", \"".$stmt->errorInfo()."\")";
+            return new Registration($this->pdo, $record, $errors);
+        }
         $record["id"] = $this->pdo->lastInsertId();
         $record["vercode"] = $vercode;
         return new Registration($this->pdo, $record);
@@ -105,7 +130,38 @@ class Registration {
         return new Registration($this->pdo, $record, $errors);
     }
 
-    private function validateLogin($login) {
+    private function checkLoginExist($login) {
+        $stmt = $this->pdo->prepare("SELECT * from users WHERE login = ?");
+        $stmt->execute([$login]);
+        $res = $stmt->fetch();
+        if (!empty($res) && $res["verification_code"] === "")
+            return true;
+        return false;
+    }
+
+    private function checkEmailExist($email) {
+        $stmt = $this->pdo->prepare("SELECT * from users WHERE email = ?");
+        $stmt->execute([$email]);
+        $res = $stmt->fetch();
+        if (!empty($res) && $res["verification_code"] === "")
+            return true;
+        return false;
+    }
+
+    private function deleteFakes($res) {
+        return ; /* todo: temp user table */
+        $validLogin = $res["login"];
+        $validEmail = $res["email"];
+
+        
+        "DELETE FROM users WHERE " . 
+        "(verification_code != :vercode AND " . 
+        "(login = :login OR email = :email)";
+        $stmt = $this->pdo->prepare("DELETE FROM users WHERE ");
+        $stmt->execute();
+    }
+
+    /* private function validateLogin($login) {
         $errors = [];
         $rule = "/^[a-zA-Z][a-zA-Z0-9]{1,}/";
 
@@ -124,9 +180,9 @@ class Registration {
             $errors["login"] = "Такой логин уже существует.";
         }
         return $errors;
-    }
+    } */
 
-    private function validatePassword($password, $password2) {
+    /* private function validatePassword($password, $password2) {
         $errors = [];
         $rule = "/(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,}/";
 
@@ -139,9 +195,9 @@ class Registration {
             $errors["password"] = $description;
         }
         return $errors;
-    }
+    } */
 
-    private function validateEmail($email) {
+    /* private function validateEmail($email) {
         $errors = [];
         $rule = "/.+@.+\..+/";
 
@@ -160,7 +216,7 @@ class Registration {
                 $errors["email"] = "Пользователь с такой почтой уже зарегистрирован.";
         }
         return $errors;
-    }
+    } */
 
     private function deleteByEmail($email) {
         $stmt = $this->pdo->prepare("DELETE FROM users WHERE email = ?");

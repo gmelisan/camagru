@@ -1,3 +1,115 @@
+.forget {
+  color: #5b58ff;
+}
+
+input[type=text],
+input[type=password] {
+  width: 250px;
+  height: 30px;
+  padding: 6px 10px;
+  /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 5px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+  border: 1px solid #5b58ff;
+}
+
+input[type=checkbox] {
+  display: inline;
+}
+
+.button {
+  text-decoration: none;
+  background-color: #5b58ff;
+  border: 1px solid #5b58ff;
+  border-radius: 5px;
+  color: white;
+  height: 40px;
+  text-align: center;
+  padding: 8px;
+  margin: 8px;
+  width: 120px;
+}
+
+.button:hover {
+  border: 1px solid #5b58ff;
+  background-color: white;
+  color: black;
+}
+
+.button-rev {
+  text-decoration: none;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  height: 40px;
+  text-align: center;
+  padding: 10px;
+  margin-left: 4px;
+  margin-right: 4px;
+  font-size: 14px;
+}
+
+.button-rev:hover {
+  background-color: white;
+  color: black;
+}
+
+.container-form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 500px;
+  padding: 10px;
+}
+.container-form > form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.container-form > form > .entry {
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.container-form > form > .entry > .name {
+  width: 200px;
+}
+.container-form > form .entry.end {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.container-form > form .entry.end a {
+  margin: 10px 30px;
+}
+.container-form > form input[type=submit] {
+  margin-top: 20px;
+  width: 150px;
+}
+
+@media only screen and (max-width: 500px) {
+  .container-form {
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .container-form > form > .entry {
+    flex-direction: column;
+  }
+  .container-form > form .entry.end {
+    justify-content: flex-start;
+    align-items: initial;
+  }
+  .container-form > form .entry.end a {
+    margin: 10px 30px;
+  }
+}
 .not-found {
   background-color: #5b58ff;
   font-size: 70px;
@@ -35,22 +147,6 @@ header .account {
   display: flex;
   padding-right: 20px;
 }
-header .account a.button {
-  text-decoration: none;
-  border: 1px solid white;
-  border-radius: 5px;
-  color: white;
-  height: 40px;
-  text-align: center;
-  padding: 10px;
-  margin-left: 4px;
-  margin-right: 4px;
-  font-size: 14px;
-}
-header .account a.button:hover {
-  background-color: white;
-  color: black;
-}
 header .account a.link {
   color: white;
   padding: 10px;
@@ -82,24 +178,6 @@ footer {
   flex-direction: column;
   align-items: center;
   height: 100%;
-}
-.container-gallery .new-button {
-  text-decoration: none;
-  background-color: #5b58ff;
-  border: 1px solid #5b58ff;
-  border-radius: 5px;
-  color: white;
-  height: 40px;
-  text-align: center;
-  padding: 10px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  width: 100px;
-}
-.container-gallery .new-button:hover {
-  border: 1px solid #5b58ff;
-  background-color: white;
-  color: black;
 }
 .container-gallery .gallery {
   display: flex;
@@ -151,69 +229,8 @@ footer {
     justify-content: flex-start;
   }
 }
-.container-registration {
-  display: flex;
-  justify-content: center;
-}
-.container-registration > .registration {
-  width: 500px;
-  padding: 10px;
-}
-.container-registration > .registration > form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.container-registration > .registration > form > .entry {
-  display: flex;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-.container-registration > .registration > form > .entry > .name {
-  width: 200px;
-}
-.container-registration > .registration > form > .entry input[type=text],
-.container-registration > .registration > form > .entry input[type=password] {
-  width: 250px;
-  height: 30px;
-  padding: 6px 10px;
-  /* The 6px vertically centers text on FF, ignored by Webkit */
-  background-color: #fff;
-  border: 1px solid #D1D1D1;
-  border-radius: 5px;
-  box-shadow: none;
-  box-sizing: border-box;
-}
-.container-registration > .registration > form > .entry input[type=text]:focus,
-.container-registration > .registration > form > .entry input[type=password]:focus {
-  border: 1px solid #5b58ff;
-}
-.container-registration > .registration > form .entry.end {
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-}
-.container-registration > .registration > form .entry.end a {
-  margin: 10px 30px;
-}
-.container-registration > .registration > form input[type=submit] {
-  margin-top: 20px;
-  width: 150px;
-}
-
-@media only screen and (max-width: 500px) {
-  .container-registration {
-    justify-content: flex-start;
-  }
-
-  .registration form .entry {
-    flex-direction: column;
-  }
-}
-.container-add {
-  background-color: black;
-  width: 20px;
-  height: 20px;
+#canvas {
+  display: none;
 }
 
 * {
@@ -235,6 +252,12 @@ body {
 
 section.main {
   flex-grow: 1;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */

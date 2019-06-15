@@ -1,0 +1,127 @@
+.forget {
+    color: $primary-color;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 250px;
+    height: 30px;
+    padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+    background-color: #fff;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border: 1px solid $primary-color;
+}
+
+input[type="checkbox"] {
+    display:inline;
+}
+
+
+.button {
+    text-decoration: none;
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    color: white;
+    height: 40px;
+    text-align: center;
+    padding: 8px;
+    margin: 8px;
+    width: 120px;
+}
+
+.button:hover {
+    border: 1px solid $primary-color;
+    background-color: white;
+    color: black;
+}
+
+.button-rev {
+    text-decoration: none;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    height: 40px;
+    text-align: center;
+    padding: 10px;
+    margin-left: 4px;
+    margin-right: 4px;
+    font-size: 14px;
+}
+
+.button-rev:hover {
+    background-color: white;
+    color: black;
+}
+
+.container-form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 500px;
+    padding: 10px;
+    @if $debug {
+        border: 1px solid red;
+    }
+
+    > form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        > .entry {
+            display: flex;
+            
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+            > .name {
+                width: 200px;
+            }
+        }
+
+        .entry.end {
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+
+            a {
+                margin: 10px 30px;
+            }
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            width: 150px;
+        }
+
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .container-form {
+        justify-content: flex-start;
+        width: 100%;
+
+        > form {
+            > .entry {
+                flex-direction: column;
+            }
+            .entry.end {
+                justify-content: flex-start;
+                align-items: initial;
+    
+                a {
+                    margin: 10px 30px;
+                }
+            }
+        }
+    }
+}

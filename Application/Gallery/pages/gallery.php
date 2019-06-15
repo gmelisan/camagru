@@ -1,5 +1,5 @@
 <div class="container-gallery">
-    <a class="new-button" href="add.html">Добавить</a>
+    <a class="button" href="/add">Добавить</a>
     <div class="gallery">
         <div class="item">
             <img src="cute.png">

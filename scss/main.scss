@@ -1,9 +1,9 @@
 @import 'config';
+@import 'form';
 @import 'not_found';
 @import 'header';
 @import 'footer';
 @import 'gallery';
-@import 'registration';
 @import 'add';
 
 * {
@@ -27,5 +27,8 @@ section.main {
     flex-grow: 1;
 }
 
-
- 
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

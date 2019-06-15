@@ -26,24 +26,6 @@ header {
         display: flex;
         padding-right: 20px;
 
-        a.button {
-            text-decoration: none;
-            border: 1px solid white;
-            border-radius: 5px;
-            color: white;
-            height: 40px;
-            text-align: center;
-            padding: 10px;
-            margin-left: 4px;
-            margin-right: 4px;
-            font-size: 14px;
-        }
-        
-        a.button:hover {
-            background-color: white;
-            color: black;
-        }
-
         a.link {
             color: white;
             padding: 10px;
