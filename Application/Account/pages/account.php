@@ -24,7 +24,7 @@
             <div class="name">Старый пароль</div>
             <input type="password" value="" name="old_password">
         </div>
-        <input type="submit" name="submit" value="Обновить">
+        <input class="button" type="submit" name="submit" value="Обновить">
     </form>
     <?php if (!empty($page["errors"])) { ?>
     <ul>

@@ -1,5 +1,5 @@
 <?php
-namespace Camagru;
+namespace Camagru\Model;
 
 class Add {
     

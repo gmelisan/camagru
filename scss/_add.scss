@@ -1,3 +1,33 @@
+.add-container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    > .main {
+        height: 480px;
+        @if $debug {
+            border: 1px solid red;
+        }
+
+        > #video {
+            height: 100%;
+            width: 100%;
+            border: 1px solid black;
+        }
+    }
+
+    > .side {
+        height: 120px;
+        
+        @if $debug {
+            border: 1px solid green;
+        }
+    }
+
+    @if $debug {
+        background-color: rgb(226, 226, 226);
+    }
+}
+
 #canvas {
     display: none;
 }

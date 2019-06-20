@@ -1,15 +1,18 @@
 <?php
-namespace Account;
+namespace Camagru\Account;
 
-class Controller {
-    public function action($account) {
+class Controller
+{
+    public function action($account)
+    {
         $account = $account->init($_SESSION["login"]);
         if (isset($_POST["submit"]))
             return $this->update($account);
         return $account;
     }
 
-    private function update($account) {
+    private function update($account)
+    {
         $record["login"] = $_POST["login"];
         $record["email"] = $_POST["email"];
         $record["password"] = $_POST["password"];

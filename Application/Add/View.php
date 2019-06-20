@@ -1,11 +1,12 @@
 <?php
-namespace Add;
+namespace Camagru\Add;
 
-class View {
-    public function getPage() {
+class View extends \Camagru\BaseView
+{
+    public function getPage($model)
+    {
         $page["title"] = "Добавить";
         $page["src"] = "Application/Add/pages/add.php";
-
         return $page;
     }
 }

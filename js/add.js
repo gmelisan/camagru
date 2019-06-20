@@ -52,12 +52,10 @@
           streaming = true;
         }
       }, false);
-  
-      startbutton.addEventListener('click', function(ev){
-        takepicture();
-        ev.preventDefault();
-      }, false);
-      
+      video.addEventListener("click", function (ev) {
+          takepicture();
+          ev.preventDefault();
+        }, false);
       clearphoto();
     }
   

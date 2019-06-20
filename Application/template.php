@@ -7,6 +7,7 @@
     <title><?php echo $page["title"] ?></title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+    <script type="text/javascript" src="js/live.js"></script>
 </head>
 
 <body>

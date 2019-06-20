@@ -1,21 +1,26 @@
 <?php
+namespace Camagru;
 
-class FrontController {
+class FrontController
+{
     private $model;
     private $view;
 
     private $name;
 
-    public function __construct($pdo) {
+    public function __construct($pdo)
+    {
         $parts = parse_url($_SERVER["REQUEST_URI"]);
         $arr = explode('/', $parts["path"]);
         $str = end($arr);
         $router = new Router($str);
         $this->name = $router->getName();
         $names = $router->route();
-        if (empty($names))
-            return ;    /* 404 */
-        
+        if (empty($names)) {
+            return;
+        }
+        /* 404 */
+
         $modelName = $names["model"];
         $viewName = $names["view"];
         $controllerName = $names["controller"];
@@ -27,11 +32,12 @@ class FrontController {
         $this->model = $controller->action($model);
     }
 
-    public function output() {
+    public function output()
+    {
         if (!isset($this->model)) {
             http_response_code(404);
             require "Application/not_found.php";
-            return ;
+            return;
         }
         $page = $this->view->getPage($this->model);
         $page["title"] = "Camagru" . (isset($page["title"]) ? (" - " . $page["title"]) : "");
