@@ -1,13 +1,17 @@
 <?php $html_sort = $page["html_sort"]; ?>
+
 <div class="container-gallery">
     <a class="button" href="/add">Добавить</a>
     <div class="gallery">
         <?php foreach ($page["items"] as $item): ?>
         <div class="item">
-            <img src="<?php echo $item["src"]; ?>">
+            <a href="/collage?id=<?php echo $item["id"]; ?>" >
+                <img src="<?php echo $item["src"]; ?>">
+            </a>
             <div class="info">
-                Likes: <?php echo $item["likes"]; ?>,
-                Comments: <?php echo $item["comments"]; ?>
+                <?php echo $item["login"] ?> &nbsp;
+                L: <?php echo $item["likes"]; ?>,
+                C: <?php echo $item["comments"]; ?>
             </div>
         </div>
         <?php endforeach;?>

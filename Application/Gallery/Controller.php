@@ -6,6 +6,9 @@ class Controller
     public function action($gallery)
     {
         $page = (isset($_GET["page"]) ? $_GET["page"] : 1);
+        if ($page <= 0) {
+            $page = 1;
+        }
         $sort = $this->getSort();
         $order = $this->getOrder();
         return $gallery->build($page, $sort, $order);

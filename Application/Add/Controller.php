@@ -5,6 +5,6 @@ class Controller
 {
     public function action($add)
     {
-        return $this;
+        return $add;
     }
 }
